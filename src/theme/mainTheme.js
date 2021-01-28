@@ -12,7 +12,7 @@ export const themeLight = {
   fontWeight: {
     light: 300,
     regular: 400,
-    bold: 700,
+    bold: 900,
   },
   fontSize: {
     xxs: '1.2rem',
@@ -44,7 +44,7 @@ export const themeDark = {
   fontWeight: {
     light: 300,
     regular: 400,
-    bold: 700,
+    bold: 900,
   },
   fontSize: {
     xxs: '1.2rem',

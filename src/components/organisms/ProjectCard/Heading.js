@@ -2,81 +2,76 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import React from 'react';
 import PropTypes from 'prop-types';
-import animation from './animation';
 import Heading from '../../atoms/Heading/Heading';
+import IconHint from '../../atoms/IconHint/IconHint';
+import animation from './animation';
+import MenuToggle from '../../atoms/MenuToggle/MenuToggle';
 
 const HeadingWrapper = styled(motion.div)`
   position: absolute;
-  top: ${({ isSelected }) => (isSelected ? '0' : '-100%')};
+  top: 0;
   left: 0;
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   padding: 2rem;
-  opacity: ${({ isSelected }) => (isSelected ? '1' : '0')};
-  transition: ${({ isSelected }) => (isSelected ? 'all 0.5s ease 0.3s' : 'top 0s opacity 0.3s')};
   z-index: 4;
 `;
 
 const StyledHeading = styled(Heading)`
-  padding: 0.5rem 1rem;
-  border-radius: 10rem;
-  background-color: ${({ theme }) => theme.background};
-  margin: 0;
+  color: ${({ theme }) => theme.background};
+  font-weight: ${({ theme }) => theme.fontWeight.bold};
 `;
 
-const CloseButton = styled.button`
-  width: 3rem;
-  height: 3rem;
-  background-image: url("data:image/svg+xml,%3Csvg 
-  aria-hidden='true' 
-  focusable='false' 
-  data-prefix='fas' 
-  data-icon='times' 
-  xmlns='http://www.w3.org/2000/svg' 
-  viewBox='0 0 352 512'%3E%3Cpath 
-  fill='${({ theme }) => theme.primary}' 
-  d='M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z'%3E%3C/path%3E%3C/svg%3E");
-  background-size: 40%;
-  background-repeat: no-repeat;
-  background-position: center;
-  font-size: 0;
-  border: none;
-  cursor: pointer;
-  border-radius: 10rem;
-  background-color: ${({ theme }) => theme.background};
-  transition: box-shadow 0.2s, transform 0.3s;
+const TechnologiesContainer = styled.div`
+  display: flex;
+`;
+
+const CloseButtonWrapper = styled.div`
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
   
-  :hover {
-    box-shadow: 0 4px 0.75rem rgba(0, 0, 0, .2);
-    transform: scale(1.1);
-  }
-  
-  :focus {
-    outline: none;
+  transform: translateY(${({ isSelected }) => (isSelected ? '0%' : '-200%')});
+  transition: all 0.3s;
+
+  path {
+    stroke: ${({ theme }) => theme.background}
   }
 `;
 
-const CardHeading = ({ isSelected, handleClose, data }) => (
+const CardHeading = ({
+  title, technologies, isSelected, handleClose,
+}) => (
   <HeadingWrapper
-    initial={false}
-    isSelected={isSelected}
     layout
     transition={animation}
   >
-    <StyledHeading>{data}</StyledHeading>
-    <CloseButton
+    <StyledHeading big>{title}</StyledHeading>
+    <TechnologiesContainer>
+      {technologies.map((i) => (
+        <IconHint
+          icon={i.icon}
+          key={i.name}
+        >
+          {i.name}
+        </IconHint>
+      ))}
+    </TechnologiesContainer>
+    <CloseButtonWrapper
+      isSelected={isSelected}
       onClick={handleClose}
     >
-      Close
-    </CloseButton>
+      <MenuToggle isOpen />
+    </CloseButtonWrapper>
   </HeadingWrapper>
 );
 
 CardHeading.propTypes = {
+  title: PropTypes.string.isRequired,
+  technologies: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,
   isSelected: PropTypes.bool,
   handleClose: PropTypes.func.isRequired,
-  data: PropTypes.string.isRequired,
 };
 
 CardHeading.defaultProps = {

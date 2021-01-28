@@ -9,7 +9,7 @@ const SocialLink = styled.a`
   height: 3rem;
   border-radius: 100%;
   transition: all 0.3s;
-  border: 1px solid ${({ theme }) => theme.primary};
+  border: 1px solid ${({ theme }) => theme.background};
 
   :before {
     content: '';
@@ -18,7 +18,7 @@ const SocialLink = styled.a`
     height: 100%;
     mask: url(${({ icon }) => icon}) no-repeat 50% 50%;
     mask-size: 1.5rem;
-    background-color: ${({ theme }) => theme.primary};
+    background-color: ${({ theme }) => theme.background};
   }
   
   :after {
@@ -34,8 +34,8 @@ const SocialLink = styled.a`
 
   :hover,
   :focus {
-    background-color: ${({ theme }) => theme.primary};
-    border: 1px solid ${({ theme }) => theme.primary};
+    background-color: ${({ theme }) => theme.background};
+    border: 1px solid ${({ theme }) => theme.background};
 
 
     ::after {

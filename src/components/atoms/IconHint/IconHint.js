@@ -1,22 +1,17 @@
 import styled from 'styled-components';
 
 const IconHint = styled.div`
-  display: flex;
-  justify-content: center;
   position: relative;
   height: 1.8rem;
   width: 1.8rem;
-  background-image: url(${({ icon }) => icon});
-  background-size: 1.6rem;
-  background-repeat: no-repeat;
-  background-position: 50% 50%;
   font-size: 0;
+  cursor: help;
 
   ::after {
     visibility: hidden;
     display: block;
     position: absolute;
-    top: -200%;
+    bottom: -200%;
     white-space: nowrap;
     font-size: ${({ theme }) => theme.fontSize.xs};
     content: '${({ children }) => children}';
@@ -25,26 +20,22 @@ const IconHint = styled.div`
     background: ${({ theme }) => theme.background};
     padding: 0.5rem 1rem;
     border-radius: 4px;
-    border: 1px solid ${({ theme }) => theme.orange};
-    box-shadow: 0px 4px 12px rgba(173, 152, 143, 0.18);
+    box-shadow: 0 4px 12px rgba(173, 152, 143, 0.18);
     opacity: 0;
     transition: all 0.3s;
   }
 
-  ::before {
-    visibility: hidden;
-    content: " ";
-    position: absolute;
-    top: -40%;
-    border-width: 5px;
-    border-style: solid;
-    border-color: ${({ theme }) => theme.orange} transparent transparent transparent;
-    opacity: 0;
-    transition: all 0.3s;
+  :before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    mask: url(${({ icon }) => icon}) no-repeat 50% 50%;
+    mask-size: 1.5rem;
+    background-color: ${({ theme }) => theme.background};
   }
 
-  :hover::after,
-  :hover::before {
+  :hover::after {
     visibility: visible;
     opacity: 1;
   }

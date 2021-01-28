@@ -8,13 +8,10 @@ const Link = styled.a`
   transition: all 0.3s;
   color: ${({ theme }) => theme.primary};
   text-decoration: none;
-
-  border-bottom: 2px solid transparent;
-
+  
   :hover,
   :focus{
     color: ${({ theme }) => theme.primary};
-    border-bottom: ${({ theme }) => `2px solid ${theme.primary}`};
   }
 
   ${({ big }) => big && css`

@@ -1,27 +1,16 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import styled, { css } from 'styled-components';
 import { motion, useMotionValue } from 'framer-motion';
 import PropTypes from 'prop-types';
-import { useHistory } from 'react-router-dom';
-import Image from './Image';
+// import { useHistory } from 'react-router-dom';
 import Content from './Content';
 import animation from './animation';
 import CardHeading from './Heading';
 
 const Wrapper = styled.div`
   position: relative;
-  height: 14rem;
-  width: 14rem;
-
-  @media screen and ${({ theme: { viewPorts } }) => viewPorts.viewport7} {
-    height: 20rem;
-    width: 20rem;
-  }
-
-  @media screen and ${({ theme: { viewPorts } }) => viewPorts.viewport12} {
-    height: 25rem;
-    width: 25rem;
-  }
+  height: 34rem;
+  width: 100%;
 `;
 
 const Overlay = styled(motion.div)`
@@ -30,8 +19,9 @@ const Overlay = styled(motion.div)`
   left: 0;
   bottom: 0;
   width: 100vw;
-  cursor: pointer;
+  cursor: zoom-out;
   visibility: ${({ isSelected }) => (isSelected ? 'visible' : 'hidden')};
+  background: rgba(0, 0, 0, 0.4);
 `;
 
 const ContentWrapper = styled.div`
@@ -43,32 +33,32 @@ const ContentWrapper = styled.div`
   background: rgba(0, 0, 0, 0);
 
   ${({ isSelected }) => isSelected && css`
-    position: fixed;
     top: 0;
     left: 0;
     right: 0;
+    height: 100vh;
     z-index: 1;
-    background: rgba(0, 0, 0, 0.4);
+
+    @media screen and (min-width: ${({ theme }) => theme.viewPorts.viewport7}px) {
+      padding: 4rem;
+    }
   `}
 `;
 
 const ContentContainer = styled(motion.div)`
   position: relative;
   width: 100%;
-  height: auto;
-  max-width: 40rem;
-  max-height: 100%;
-  background-color: ${({ theme }) => theme.background};
-  margin: auto;
+  max-width: 60rem;
   cursor: pointer;
   overflow: hidden;
+  border-radius: 2rem;
   box-shadow: 0 4px 0.75rem rgba(0, 0, 0, .2);
   z-index: 5;
 
   ${({ isSelected }) => isSelected && css`
-    padding: 2rem 1rem;
-    overflow-y: scroll;
     cursor: initial;
+    height: auto;
+    margin: auto;
 
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none;
@@ -80,42 +70,47 @@ const ContentContainer = styled(motion.div)`
 `;
 
 const ProjectCard = ({
-  title, image, content, id, isSelected,
+  images,
+  technologies,
+  title,
+  content,
+  links,
 }) => {
+  const [isSelected, setIsSelected] = useState(false);
   const zIndex = useMotionValue(isSelected ? 2 : 0);
   const ref = useRef();
-  const history = useHistory();
+  // const history = useHistory();
 
   const checkZIndex = (latest) => {
     if (isSelected) {
       zIndex.set(10);
-    } else if (!isSelected && latest.borderRadius === '100%') {
+    } else if (!isSelected && latest.opacity !== 1.01) {
       zIndex.set(0);
     }
   };
 
-  const handleOpen = () => {
-    const { scrollY } = window;
+  // const handleOpen = () => {
+  //   const { scrollY } = window;
+  //
+  //   history.push(`/${id}`);
+  //
+  //   document.body.style.position = 'fixed';
+  //   document.body.style.top = `-${scrollY}px`;
+  // };
 
-    history.push(`/${id}`);
-
-    document.body.style.position = 'fixed';
-    document.body.style.top = `-${scrollY}px`;
-  };
-
-  const handleClose = () => {
-    const scrollY = parseInt(document.body.style.top, 10);
-
-    ref.current.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
-    history.replace('/');
-
-    document.body.style.position = '';
-    document.body.style.top = '';
-    window.scrollTo(0, -(scrollY || 0));
-  };
+  // const handleClose = () => {
+  //   const scrollY = parseInt(document.body.style.top, 10);
+  //
+  //   ref.current.scrollTo({
+  //     top: 0,
+  //     behavior: 'smooth',
+  //   });
+  //   history.replace('/');
+  //
+  //   document.body.style.position = '';
+  //   document.body.style.top = '';
+  //   window.scrollTo(0, -(scrollY || 0));
+  // };
 
   return (
     <Wrapper>
@@ -125,26 +120,30 @@ const ProjectCard = ({
       >
         <Overlay
           isSelected={isSelected}
-          onClick={handleClose}
+          onClick={() => setIsSelected(false)}
         />
         <ContentContainer
           ref={ref}
           initial={false}
-          onClick={isSelected ? null : handleOpen}
+          onClick={isSelected ? null : () => setIsSelected(true)}
           isSelected={isSelected}
           layout
           style={{ zIndex }}
-          animate={isSelected ? {
-            borderRadius: '2rem',
-          } : {
-            borderRadius: '100%',
-          }}
           transition={animation}
           onUpdate={checkZIndex}
         >
-          <Image isSelected={isSelected} data={image} />
-          <CardHeading isSelected={isSelected} handleClose={handleClose} data={title} />
-          <Content data={content} />
+          <CardHeading
+            isSelected={isSelected}
+            title={title}
+            technologies={technologies}
+            handleClose={() => setIsSelected(false)}
+          />
+          <Content
+            isOpen={isSelected}
+            content={content}
+            links={links}
+            images={images}
+          />
         </ContentContainer>
       </ContentWrapper>
     </Wrapper>
@@ -152,15 +151,17 @@ const ProjectCard = ({
 };
 
 ProjectCard.propTypes = {
-  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  images: PropTypes.objectOf(PropTypes.string).isRequired,
+  technologies: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,
+  // id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   title: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
-  isSelected: PropTypes.bool,
+  links: PropTypes.objectOf(PropTypes.string).isRequired,
+  // isSelected: PropTypes.bool,
 };
 
-ProjectCard.defaultProps = {
-  isSelected: false,
-};
+// ProjectCard.defaultProps = {
+//   isSelected: false,
+// };
 
 export default ProjectCard;
