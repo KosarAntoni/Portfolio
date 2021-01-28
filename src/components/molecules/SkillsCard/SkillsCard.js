@@ -25,7 +25,7 @@ const SkillsCard = ({ skills }) => (
     <Heading big>Skills:</Heading>
     <ul>
       {skills.map((i) => (
-        <li>
+        <li key={i}>
           <StyledParagraph big>{i}</StyledParagraph>
         </li>
       ))}

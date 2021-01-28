@@ -19,7 +19,7 @@ const Content = styled.div`
   max-width: 1170px;
   width: 100%;
   border-radius: 2rem;
-  padding: 5rem 2rem;
+  padding: 8rem 2rem;
   box-shadow: 0 4px 0.75rem rgba(0, 0, 0, .2);
   overflow: hidden;
   position: relative;
@@ -38,8 +38,8 @@ const Content = styled.div`
     position: absolute;
     top: 0;
     right: 0;
-    height: 100%;
-    width: 1.5rem;
+    width: 100%;
+    height: 1.5rem;
     background: repeating-linear-gradient(
             45deg,
             #606dbc,
@@ -54,10 +54,10 @@ const Content = styled.div`
     content: '';
 
     position: absolute;
-    top: 0;
+    bottom: 0;
     left: 0;
-    height: 100%;
-    width: 1.5rem;
+    width: 100%;
+    height: 1.5rem;
     background: repeating-linear-gradient(
             45deg,
             #606dbc,
@@ -69,13 +69,27 @@ const Content = styled.div`
 
   @media screen and (min-width: ${({ theme }) => theme.viewPorts.viewport7}px) {
     padding: 10rem 10rem;
+
+    ::after {
+      top: 0;
+      right: 0;
+      height: 100%;
+      width: 2rem;
+    }
+
+    ::before {
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 2rem;
+    }
   }
 `;
 
 const Container = styled.div`
   position: absolute;
   left: 18rem;
-  top: 12.5rem;
+  top: 15.5rem;
 
   @media screen and (min-width: ${({ theme }) => theme.viewPorts.viewport7}px) {
     left: 33rem;
@@ -99,6 +113,7 @@ const StyledSecondaryHeading = styled(Heading)`
   line-height: 2rem;
   color: ${({ theme }) => theme.secondary};
   font-family: 'Teko', sans-serif;
+  font-weight: normal;
 
   @media screen and (min-width: ${({ theme }) => theme.viewPorts.viewport7}px) {
     font-size: 4rem;
