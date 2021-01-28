@@ -6,18 +6,19 @@ const Link = styled.a`
   justify-content: center;
   align-items: center;
   transition: all 0.3s;
-  color: ${({ theme }) => theme.primary};
+  color: ${({ theme }) => theme.secondary};
   text-decoration: none;
   
   :hover,
   :focus{
-    color: ${({ theme }) => theme.primary};
+    color: ${({ theme }) => theme.grey};
   }
 
   ${({ big }) => big && css`
     border: 1px solid ${({ theme }) => theme.primary};
     font-size: ${({ theme }) => theme.fontSize.m};
     font-weight: ${({ theme }) => theme.fontWeight.bold};
+    color: ${({ theme }) => theme.primary};
     padding: 0.5rem 1rem;
     border-radius: 10rem;
 

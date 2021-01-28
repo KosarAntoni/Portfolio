@@ -28,6 +28,7 @@ const StyledLink = styled(Link)`
   font-size: ${({ theme }) => theme.fontSize.s};
   font-weight: ${({ theme }) => theme.fontWeight.bold};
   padding: 0.5rem 2rem;
+  color: ${({ theme }) => theme.primary};
 
   :hover,
   :focus {

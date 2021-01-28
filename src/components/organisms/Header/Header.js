@@ -20,7 +20,7 @@ const Wrapper = styled.header`
   height: 7rem;
   padding: 1.5rem;
   z-index: 10;
-  background-color: ${({ theme }) => theme.backgroundMain};
+  background-color: ${({ theme }) => theme.background};
   box-shadow: 0 4px 0.75rem rgba(0, 0, 0, .2);
 
   @media screen and (min-width: ${({ theme }) => theme.viewPorts.viewport7}px) {

@@ -5,6 +5,7 @@ import GlobalStyle from '../../theme/GlobalStyle';
 import Header from '../organisms/Header/Header';
 import GridTemplate from './GridTemplate';
 import { projects, skills } from '../../data/data';
+import MainBanner from '../organisms/MainBanner/MainBanner';
 
 const MainTemplate = () => {
   const [theme, setTheme] = useState(themeLight);
@@ -28,6 +29,7 @@ const MainTemplate = () => {
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <Header />
+      <MainBanner />
       <GridTemplate projects={projects} skills={skills} />
     </ThemeProvider>
   );
