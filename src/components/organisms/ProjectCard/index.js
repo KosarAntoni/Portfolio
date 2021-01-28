@@ -1,11 +1,13 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled, { css } from 'styled-components';
-import { motion, useMotionValue } from 'framer-motion';
+import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 // import { useHistory } from 'react-router-dom';
 import Content from './Content';
 import animation from './animation';
 import CardHeading from './Heading';
+import MenuToggle from '../../atoms/MenuToggle/MenuToggle';
+import DevicesMockup from '../../molecules/DevicesMockup/DevicesMockup';
 
 const Wrapper = styled.div`
   position: relative;
@@ -31,42 +33,78 @@ const ContentWrapper = styled.div`
   justify-content: center;
   align-content: center;
   background: rgba(0, 0, 0, 0);
-
+  z-index: 1;
+  
   ${({ isSelected }) => isSelected && css`
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
     height: 100vh;
-    z-index: 1;
-
+    z-index: 10;
+    padding: 1.5rem;
+    
     @media screen and (min-width: ${({ theme }) => theme.viewPorts.viewport7}px) {
-      padding: 4rem;
+      padding: 4.5rem;
     }
   `}
 `;
 
 const ContentContainer = styled(motion.div)`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
   position: relative;
   width: 100%;
-  max-width: 60rem;
+  max-width: 70rem;
   cursor: pointer;
   overflow: hidden;
   border-radius: 2rem;
   box-shadow: 0 4px 0.75rem rgba(0, 0, 0, .2);
-  z-index: 5;
+  z-index: 1;
+  transition: z-index 0.1s 1s;
+  background: ${({ background }) => background};
 
   ${({ isSelected }) => isSelected && css`
     cursor: initial;
     height: auto;
     margin: auto;
 
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none;
+    z-index: 10;
 
-    ::-webkit-scrollbar {
-      display: none;
-    }
   `}
+`;
+
+const CloseButtonWrapper = styled.div`
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  
+  transform: translateY(${({ isSelected }) => (isSelected ? '0%' : '-200%')});
+  transition: all 0.3s;
+  z-index: 3;
+
+  path {
+    stroke: ${({ theme }) => theme.background}
+  }
+`;
+
+const DevicesMockupWrapper = styled(motion.div)`
+  position: absolute;
+  top: 2rem;
+  
+  margin: 6rem auto 3rem;
+  width: 30rem;
+  height: 30rem;
+  
+  @media screen and (min-width: ${({ theme }) => theme.viewPorts.viewport4}px) {
+    width: 40rem;
+  }  
+  
+  @media screen and (min-width: ${({ theme }) => theme.viewPorts.viewport7}px) {
+    width: 50rem;
+  }
 `;
 
 const ProjectCard = ({
@@ -75,19 +113,25 @@ const ProjectCard = ({
   title,
   content,
   links,
+  background,
 }) => {
   const [isSelected, setIsSelected] = useState(false);
-  const zIndex = useMotionValue(isSelected ? 2 : 0);
+  const [isWide, setIsWide] = useState(false);
+  // const zIndex = useMotionValue(isSelected ? 2 : 0);
   const ref = useRef();
   // const history = useHistory();
+  useEffect(() => {
+    if (ref.current.clientWidth > 400) setIsWide(true);
+  }, [ref]);
 
-  const checkZIndex = (latest) => {
-    if (isSelected) {
-      zIndex.set(10);
-    } else if (!isSelected && latest.opacity !== 1.01) {
-      zIndex.set(0);
-    }
-  };
+  // const checkZIndex = (latest) => {
+  //   console.log(latest);
+  //   if (isSelected) {
+  //     zIndex.set(10);
+  //   } else if (!isSelected && latest.opacity !== 1.01) {
+  //     zIndex.set(0);
+  //   }
+  // };
 
   // const handleOpen = () => {
   //   const { scrollY } = window;
@@ -113,9 +157,12 @@ const ProjectCard = ({
   // };
 
   return (
-    <Wrapper>
+    <Wrapper
+      ref={ref}
+    >
       <ContentWrapper
         layout
+        transition={animation}
         isSelected={isSelected}
       >
         <Overlay
@@ -123,21 +170,39 @@ const ProjectCard = ({
           onClick={() => setIsSelected(false)}
         />
         <ContentContainer
-          ref={ref}
-          initial={false}
           onClick={isSelected ? null : () => setIsSelected(true)}
           isSelected={isSelected}
           layout
-          style={{ zIndex }}
           transition={animation}
-          onUpdate={checkZIndex}
+          background={background}
         >
-          <CardHeading
+          <CloseButtonWrapper
             isSelected={isSelected}
+            onClick={() => setIsSelected(false)}
+          >
+            <MenuToggle isOpen />
+          </CloseButtonWrapper>
+          <CardHeading
             title={title}
             technologies={technologies}
-            handleClose={() => setIsSelected(false)}
           />
+
+          <DevicesMockupWrapper
+            layout
+            transition={animation}
+            isSelected={isSelected}
+            initial={isWide ? { x: 100, y: -60 } : { x: 0, y: 0 }}
+            animate={!isWide || isSelected
+              ? { x: 0, y: 0, scale: 1 } : { x: 100, y: -60, scale: 0.9 }}
+          >
+            <DevicesMockup
+              desktop={images.desktop}
+              tablet={images.tablet}
+              mobile={images.mobile}
+              isOpen={isWide || isSelected}
+            />
+          </DevicesMockupWrapper>
+
           <Content
             isOpen={isSelected}
             content={content}
@@ -153,6 +218,7 @@ const ProjectCard = ({
 ProjectCard.propTypes = {
   images: PropTypes.objectOf(PropTypes.string).isRequired,
   technologies: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,
+  background: PropTypes.string,
   // id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   title: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
@@ -160,8 +226,9 @@ ProjectCard.propTypes = {
   // isSelected: PropTypes.bool,
 };
 
-// ProjectCard.defaultProps = {
-//   isSelected: false,
-// };
+ProjectCard.defaultProps = {
+  // isSelected: false,
+  background: '#fff',
+};
 
 export default ProjectCard;

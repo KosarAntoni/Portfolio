@@ -20,7 +20,7 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     font-size: 1.4rem;
-    font-family: 'Teko', sans-serif;
+    font-family: 'Nunito', sans-serif;
     color: ${({ theme }) => theme.primary};
     padding-top: 7rem;
     width: 100%;

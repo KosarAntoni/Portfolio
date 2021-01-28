@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import DeviceMockup from '../../atoms/DeviceMockup/DeviceMockup';
@@ -13,6 +12,7 @@ const Wrapper = styled.div`
   
   max-width: 500px;
   width: 100%;
+  margin: auto;
 `;
 
 const BackgroundWrapper = styled.div`
@@ -36,12 +36,12 @@ const BackgroundDeviceContainer = styled.div`
   filter: drop-shadow(16px 16px 20px rgba(0,0,0,0.5));
 `;
 
-const DeviceMockupWrapperLeft = styled(motion.div)`
+const DeviceMockupWrapperLeft = styled.div`
   transform: translateX(${({ isOpen }) => (isOpen ? '0%' : '100%')});
   transition: all 0.3s ease-out;
 `;
 
-const DeviceMockupWrapperRight = styled(motion.div)`
+const DeviceMockupWrapperRight = styled.div`
   transform: translateX(${({ isOpen }) => (isOpen ? '0%' : '-100%')});
   transition: all 0.3s ease-out;
 `;
@@ -56,18 +56,14 @@ const DevicesMockup = ({
     <BackgroundWrapper>
       <BackgroundDeviceContainer>
         <DeviceMockupWrapperLeft
-          layout
           isOpen={isOpen}
-          transition={{ type: 'spring', stiffness: 200, damping: 30 }}
         >
           <DeviceMockup desktop img={desktop} />
         </DeviceMockupWrapperLeft>
       </BackgroundDeviceContainer>
       <BackgroundDeviceContainer right>
         <DeviceMockupWrapperRight
-          layout
           isOpen={isOpen}
-          transition={{ type: 'spring', stiffness: 200, damping: 30 }}
         >
           <DeviceMockup tablet img={tablet} />
         </DeviceMockupWrapperRight>

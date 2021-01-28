@@ -21,6 +21,7 @@ const Wrapper = styled.header`
   padding: 1.5rem;
   z-index: 10;
   background-color: ${({ theme }) => theme.backgroundMain};
+  box-shadow: 0 4px 0.75rem rgba(0, 0, 0, .2);
 
   @media screen and (min-width: ${({ theme }) => theme.viewPorts.viewport7}px) {
     padding: 1.5rem 4.5rem;
@@ -63,7 +64,7 @@ const Background = styled(motion.div)`
   width: 1rem;
   height: 1rem;
   border-radius: 100%;
-  background-image: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);
+  background-color: #a6c1ee;
   
   @media screen and (min-width: ${({ theme }) => theme.viewPorts.viewport9}px) {
     top: -3rem;
