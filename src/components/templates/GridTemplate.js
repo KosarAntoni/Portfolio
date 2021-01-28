@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import ProjectCard from '../organisms/ProjectCard';
+import SkillsCard from '../molecules/SkillsCard/SkillsCard';
 
 const Wrapper = styled.div`
   display: flex;
@@ -67,10 +68,12 @@ const ItemWrapper = styled.div`
   };
 `;
 
-const GridTemplate = ({ projects }) => (
+const GridTemplate = ({ projects, skills }) => (
   <Wrapper>
     <Grid>
-      <ItemWrapper />
+      <ItemWrapper>
+        <SkillsCard skills={skills} />
+      </ItemWrapper>
       {projects.map((i) => (
         <ItemWrapper
           key={i.id}
@@ -103,6 +106,7 @@ GridTemplate.propTypes = {
       ]),
     ),
   ).isRequired,
+  skills: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default GridTemplate;

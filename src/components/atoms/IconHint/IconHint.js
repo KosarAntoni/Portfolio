@@ -32,7 +32,7 @@ const IconHint = styled.div`
     height: 100%;
     mask: url(${({ icon }) => icon}) no-repeat 50% 50%;
     mask-size: 1.5rem;
-    background-color: ${({ theme }) => theme.background};
+    background-color: ${({ theme }) => theme.primary};
   }
 
   :hover::after {

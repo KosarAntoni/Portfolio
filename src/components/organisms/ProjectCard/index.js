@@ -63,7 +63,7 @@ const ContentContainer = styled(motion.div)`
   border-radius: 2rem;
   box-shadow: 0 4px 0.75rem rgba(0, 0, 0, .2);
   z-index: 1;
-  transition: z-index 0.1s 1s;
+  transition: z-index 0.1s 0.8s;
   background: ${({ background }) => background};
 
   ${({ isSelected }) => isSelected && css`
@@ -85,9 +85,6 @@ const CloseButtonWrapper = styled.div`
   transition: all 0.3s;
   z-index: 3;
 
-  path {
-    stroke: ${({ theme }) => theme.background}
-  }
 `;
 
 const DevicesMockupWrapper = styled(motion.div)`

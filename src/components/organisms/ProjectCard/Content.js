@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -13,7 +13,6 @@ const Wrapper = styled(motion.div)`
   
   padding: 40rem 2rem 2rem;
   z-index: 0;
-  color: ${({ theme }) => theme.background};
   
   overflow: hidden;
 `;
@@ -29,20 +28,11 @@ const StyledLink = styled(Link)`
   font-size: ${({ theme }) => theme.fontSize.s};
   font-weight: ${({ theme }) => theme.fontWeight.bold};
   padding: 0.5rem 2rem;
-  color: ${({ theme }) => theme.background};
-  border-color: ${({ theme }) => theme.background};
 
   :hover,
   :focus {
     color: ${({ theme }) => theme.secondary};
   }
-  
-  ${({ big }) => big && css`
-    :hover,
-    :focus {
-      background-color: ${({ theme }) => theme.background};
-      border: 1px solid ${({ theme }) => theme.background};
-    }`
 }
 `;
 

@@ -17,7 +17,6 @@ const HeadingWrapper = styled(motion.div)`
 `;
 
 const StyledHeading = styled(Heading)`
-  color: ${({ theme }) => theme.background};
   font-weight: ${({ theme }) => theme.fontWeight.bold};
 `;
 
