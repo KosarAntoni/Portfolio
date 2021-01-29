@@ -22,7 +22,7 @@ export const projects = [
         name: 'Atomic Design',
       },
     ],
-    title: 'Lorem ipsum',
+    title: 'Lotos',
     content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquam\n'
             + 'atque doloribus eos facilis laudantium libero natus odit quas voluptate?',
     links: {
@@ -48,14 +48,14 @@ export const projects = [
         name: 'Atomic Design',
       },
     ],
-    title: 'Lorem ipsum',
+    title: 'FavNote',
     content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquam\n'
             + 'atque doloribus eos facilis laudantium libero natus odit quas voluptate?',
     links: {
       live: 'https://www.google.pl/',
       code: 'https://www.google.pl/',
     },
-    background: 'linear-gradient(45deg,#ff9a9e 0%,#fad0c4 99%,#fad0c4 100%)',
+    background: 'linear-gradient(to top, #e6b980 0%, #eacda3 100%)',
   },
   {
     id: 2,
@@ -74,14 +74,14 @@ export const projects = [
         name: 'Atomic Design',
       },
     ],
-    title: 'Lorem ipsum',
+    title: 'Simple Portfolio',
     content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquam\n'
             + 'atque doloribus eos facilis laudantium libero natus odit quas voluptate?',
     links: {
       live: 'https://www.google.pl/',
       code: 'https://www.google.pl/',
     },
-    background: 'linear-gradient(45deg,#ff9a9e 0%,#fad0c4 99%,#fad0c4 100%)',
+    background: 'linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%)',
   },
   {
     id: 3,
@@ -100,14 +100,14 @@ export const projects = [
         name: 'Atomic Design',
       },
     ],
-    title: 'Lorem ipsum',
+    title: 'Snake',
     content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquam\n'
             + 'atque doloribus eos facilis laudantium libero natus odit quas voluptate?',
     links: {
       live: 'https://www.google.pl/',
       code: 'https://www.google.pl/',
     },
-    background: 'linear-gradient(45deg,#ff9a9e 0%,#fad0c4 99%,#fad0c4 100%)',
+    background: 'linear-gradient(to top, #9EDC56 0%, #86D42B 100%)',
   },
   {
     id: 4,
@@ -126,14 +126,14 @@ export const projects = [
         name: 'Atomic Design',
       },
     ],
-    title: 'Lorem ipsum',
+    title: 'Hotel Cats',
     content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquam\n'
             + 'atque doloribus eos facilis laudantium libero natus odit quas voluptate?',
     links: {
       live: 'https://www.google.pl/',
       code: 'https://www.google.pl/',
     },
-    background: 'linear-gradient(to top, #1e3c72 0%, #1e3c72 1%, #2a5298 100%)',
+    background: 'linear-gradient(120deg, #f6d365 0%, #fda085 100%)',
   },
 ];
 

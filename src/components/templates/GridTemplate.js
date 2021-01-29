@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import ProjectCard from '../organisms/ProjectCard';
 import SkillsCard from '../molecules/SkillsCard/SkillsCard';
+import AuthorCard from '../molecules/AuthorCard/AuthorCard';
 
 const Wrapper = styled.div`
   display: flex;
@@ -87,8 +88,10 @@ const GridTemplate = ({ projects, skills }) => (
             background={i.background}
           />
         </ItemWrapper>
-
       ))}
+      <ItemWrapper>
+        <AuthorCard />
+      </ItemWrapper>
     </Grid>
   </Wrapper>
 );

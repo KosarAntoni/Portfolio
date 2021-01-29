@@ -18,7 +18,7 @@ const Button = styled.button`
 const Path = styled(motion.path).attrs((props) => ({
   ...props,
 }))`
-  stroke: ${({ theme, isOpen }) => (isOpen ? theme.primary : theme.secondary)};
+  stroke: ${({ theme }) => theme.secondary};
   transition: stroke 0.5s;
   fill: transparent;
   stroke-width: 3px;

@@ -5,23 +5,11 @@ const Logo = styled.a`
   display: block;
   width: 4rem;
   height: 4rem;
-
   cursor: pointer;
 
-  background-image: linear-gradient(-225deg, #2CD8D5 0%, #6B8DD6 48%, #8E37D7 100%);
-  border-radius: 100%;
-  
-  ::after {
-    display: block;
-    content: '';
-    width: 100%;
-    height: 100%;
-
-    background-image: url(${logo});
-    background-size: 3.5rem;
-    background-repeat: no-repeat;
-    background-position: 50%;
-  }
+  mask: url(${logo}) no-repeat 50% 50%;
+  mask-size: 4rem;
+  background-color: ${({ theme }) => theme.secondary};
 `;
 
 export default Logo;

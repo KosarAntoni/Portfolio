@@ -85,6 +85,10 @@ const CloseButtonWrapper = styled.div`
   transition: all 0.3s;
   z-index: 3;
 
+  path {
+    stroke: ${({ theme }) => theme.primary}
+  }
+  
 `;
 
 const DevicesMockupWrapper = styled(motion.div)`

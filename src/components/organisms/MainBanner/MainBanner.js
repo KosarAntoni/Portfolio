@@ -19,7 +19,7 @@ const Content = styled.div`
   max-width: 1170px;
   width: 100%;
   border-radius: 2rem;
-  padding: 8rem 2rem;
+  padding: 12rem 2rem;
   box-shadow: 0 4px 0.75rem rgba(0, 0, 0, .2);
   overflow: hidden;
   position: relative;
@@ -42,10 +42,10 @@ const Content = styled.div`
     height: 1.5rem;
     background: repeating-linear-gradient(
             45deg,
-            #606dbc,
-            #606dbc 10px,
-            #465298 10px,
-            #465298 20px
+            #96deda,
+            #96deda 10px,
+            #50c9c3 10px,
+            #50c9c3 20px
     );
   }
   
@@ -60,10 +60,10 @@ const Content = styled.div`
     height: 1.5rem;
     background: repeating-linear-gradient(
             45deg,
-            #606dbc,
-            #606dbc 10px,
-            #465298 10px,
-            #465298 20px
+            #96deda,
+            #96deda 10px,
+            #50c9c3 10px,
+            #50c9c3 20px
     );
   }
 
@@ -89,7 +89,7 @@ const Content = styled.div`
 const Container = styled.div`
   position: absolute;
   left: 18rem;
-  top: 15.5rem;
+  top: 19.5rem;
 
   @media screen and (min-width: ${({ theme }) => theme.viewPorts.viewport7}px) {
     left: 33rem;
@@ -122,7 +122,7 @@ const StyledSecondaryHeading = styled(Heading)`
 `;
 
 const Dot = styled.span`
-  color: #465298;
+  color: #50c9c3;
 `;
 
 const MainBanner = () => (

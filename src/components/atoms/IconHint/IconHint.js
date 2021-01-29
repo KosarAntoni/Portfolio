@@ -18,6 +18,7 @@ const IconHint = styled.div`
     text-align: center;
 
     background: ${({ theme }) => theme.background};
+    color: ${({ theme }) => theme.secondary};
     padding: 0.5rem 1rem;
     border-radius: 4px;
     box-shadow: 0 4px 12px rgba(173, 152, 143, 0.18);
@@ -32,7 +33,7 @@ const IconHint = styled.div`
     height: 100%;
     mask: url(${({ icon }) => icon}) no-repeat 50% 50%;
     mask-size: 1.5rem;
-    background-color: ${({ theme }) => theme.primary};
+    background-color: ${({ theme }) => theme.background};
   }
 
   :hover::after {
