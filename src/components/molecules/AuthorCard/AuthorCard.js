@@ -6,11 +6,10 @@ import Heading from '../../atoms/Heading/Heading';
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   position: relative;
   overflow: hidden;
   
-  padding: 4rem 2rem;
+  padding: 2rem;
   border-radius: 2rem;
   box-shadow: 0 4px 0.75rem rgba(0, 0, 0, .2);
   background-color: ${({ theme }) => theme.background};
@@ -27,7 +26,7 @@ const Wrapper = styled.div`
     bottom: 0;
     right: 0;
     width: 100%;
-    height: 1.5rem;
+    height: 1rem;
     background: repeating-linear-gradient(
             45deg,
             #ff4e50,
@@ -42,6 +41,7 @@ const StyledParagraph = styled(Paragraph)`
   color: ${({ theme }) => theme.secondary};
   font-family: 'Teko', sans-serif;
   font-size: ${({ theme }) => theme.fontSize.l};
+  text-decoration: ${({ crossed }) => crossed && 'line-through'};
 `;
 
 const StyledHeading = styled(Heading)`
@@ -53,6 +53,8 @@ const AuthorCard = () => (
   <Wrapper>
     <StyledParagraph>💻 Coded by</StyledParagraph>
     <StyledHeading>Anton Kosar</StyledHeading>
+    <StyledParagraph crossed>In Brześć️ 🏹</StyledParagraph>
+    <StyledParagraph crossed>In Wrocław️ 🦁</StyledParagraph>
     <StyledParagraph>In Gdańsk ⚓️</StyledParagraph>
     <StyledParagraph>With ❤️</StyledParagraph>
   </Wrapper>

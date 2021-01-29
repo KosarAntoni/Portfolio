@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import ProjectCard from '../organisms/ProjectCard';
 import SkillsCard from '../molecules/SkillsCard/SkillsCard';
 import AuthorCard from '../molecules/AuthorCard/AuthorCard';
+import ContactCard from '../molecules/ContactCard/ContactCard';
 
 const Wrapper = styled.div`
   display: flex;
@@ -26,6 +27,10 @@ const Grid = styled.div`
   grid-template-columns: 1fr;
   grid-gap: 2rem;
   
+  @media screen and (min-width: ${({ theme }) => theme.viewPorts.viewport4}px) {
+    grid-template-columns: 1fr 1fr;
+  }  
+  
   @media screen and (min-width: ${({ theme }) => theme.viewPorts.viewport7}px) {
     grid-template-columns: 1fr 1fr 1fr;
   }
@@ -36,6 +41,16 @@ const Grid = styled.div`
 `;
 
 const ItemWrapper = styled.div`
+  @media screen and (min-width: ${({ theme }) => theme.viewPorts.viewport4}px) {
+    :nth-child(1) {
+      grid-area: 1 / 1 / 3 / 2;
+    }
+    
+    :nth-child(4) {
+      grid-area: 3 / 1 / 4 / 3;
+    }
+  } 
+  
   @media screen and (min-width: ${({ theme }) => theme.viewPorts.viewport7}px) {
     :nth-child(1) {
       grid-area: 1 / 1 / 3 / 2;
@@ -47,6 +62,10 @@ const ItemWrapper = styled.div`
 
     :nth-child(4) {
       grid-area: 3 / 1 / 4 / 3;
+    }
+    
+    :nth-child(7) {
+      grid-area: 4 / 2 / 5 / 4;
     }
   }
 
@@ -65,6 +84,10 @@ const ItemWrapper = styled.div`
 
     :nth-child(5) {
       grid-area: 3 / 1 / 4 / 3;
+    }
+
+    :nth-child(7) {
+      grid-area: auto;
     }
   };
 `;
@@ -89,6 +112,9 @@ const GridTemplate = ({ projects, skills }) => (
           />
         </ItemWrapper>
       ))}
+      <ItemWrapper>
+        <ContactCard />
+      </ItemWrapper>
       <ItemWrapper>
         <AuthorCard />
       </ItemWrapper>

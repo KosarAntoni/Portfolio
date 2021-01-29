@@ -57,7 +57,7 @@ const ContentContainer = styled(motion.div)`
   
   position: relative;
   width: 100%;
-  max-width: 70rem;
+  max-width: 74rem;
   cursor: pointer;
   overflow: hidden;
   border-radius: 2rem;

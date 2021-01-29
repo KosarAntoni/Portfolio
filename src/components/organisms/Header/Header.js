@@ -19,7 +19,7 @@ const Wrapper = styled.header`
   width: 100%;
   height: 7rem;
   padding: 1.5rem;
-  z-index: 10;
+  z-index: 15;
   background-color: ${({ theme }) => theme.background};
   box-shadow: 0 4px 0.75rem rgba(0, 0, 0, .2);
 
