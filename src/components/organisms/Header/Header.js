@@ -17,7 +17,6 @@ const Wrapper = styled.header`
   align-items: center;
   flex-direction: column;
   width: 100%;
-  height: 7rem;
   padding: 1.5rem;
   z-index: 15;
   background-color: ${({ theme }) => theme.background};
@@ -125,6 +124,12 @@ const MenuToggleWrapper = styled.div`
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const scrollWithOffset = (el) => {
+    const yCoordinate = el.getBoundingClientRect().top + window.pageYOffset;
+    const yOffset = -80;
+    window.scrollTo({ top: yCoordinate + yOffset, behavior: 'smooth' });
+  };
+
   return (
     <Wrapper>
       <BackgroundContainer isMenuOpen={isMenuOpen}>
@@ -154,20 +159,23 @@ const Header = () => {
         <WideScreenNavContainer>
           <StyledWideScreenLink
             as={HashLink}
-            to="/catalog#"
+            to="/#skills"
+            scroll={(el) => scrollWithOffset(el)}
+            smooth
           >
             Skills
           </StyledWideScreenLink>
           <StyledWideScreenLink
             as={HashLink}
-            to="/home#testimonials"
+            to="/#projects"
+            scroll={(el) => scrollWithOffset(el)}
             smooth
           >
             Projects
           </StyledWideScreenLink>
           <StyledWideScreenLink
             as={HashLink}
-            to="#contact"
+            to="/#contact"
             smooth
           >
             Contact
@@ -198,7 +206,8 @@ const Header = () => {
           <StyledLink
             smooth
             as={HashLink}
-            to="/catalog#"
+            to="/#skills"
+            scroll={(el) => scrollWithOffset(el)}
             big
             onClick={() => setIsMenuOpen(false)}
           >
@@ -207,7 +216,8 @@ const Header = () => {
           <StyledLink
             smooth
             as={HashLink}
-            to="/home#testimonials"
+            to="/#projects"
+            scroll={(el) => scrollWithOffset(el)}
             big
             onClick={() => setIsMenuOpen(false)}
           >
@@ -216,7 +226,8 @@ const Header = () => {
           <StyledLink
             smooth
             as={HashLink}
-            to="#contact"
+            to="/#contact"
+            scroll={(el) => scrollWithOffset(el)}
             big
             onClick={() => setIsMenuOpen(false)}
           >

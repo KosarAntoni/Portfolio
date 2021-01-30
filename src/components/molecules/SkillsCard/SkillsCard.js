@@ -62,7 +62,7 @@ const StyledHeading = styled(Heading)`
 `;
 
 const SkillsCard = ({ skills }) => (
-  <Wrapper>
+  <Wrapper id="skills">
     <StyledHeading big>Skills:</StyledHeading>
     <ul>
       {skills.map((i) => (

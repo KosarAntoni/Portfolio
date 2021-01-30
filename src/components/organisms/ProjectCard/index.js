@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import styled, { css } from 'styled-components';
 import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
-// import { useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import Content from './Content';
 import animation from './animation';
 import CardHeading from './Heading';
@@ -119,51 +119,47 @@ const DevicesMockupWrapper = styled(motion.div)`
 `;
 
 const ProjectCard = ({
+  id,
   images,
   technologies,
   title,
   content,
   links,
   background,
+  isSelected,
 }) => {
-  const [isSelected, setIsSelected] = useState(false);
   const [isWide, setIsWide] = useState(false);
-  // const zIndex = useMotionValue(isSelected ? 2 : 0);
   const ref = useRef();
-  // const history = useHistory();
+  const history = useHistory();
+
+  const scrollLock = () => {
+    const { scrollY } = window;
+
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${scrollY}px`;
+  };
+
+  const scrollUnlock = () => {
+    const scrollY = parseInt(document.body.style.top, 10);
+    document.body.style.position = '';
+    document.body.style.top = '';
+    window.scrollTo(0, -(scrollY || 0));
+  };
+
   useEffect(() => {
+    if (isSelected) scrollLock();
     if (ref.current.clientWidth > 400) setIsWide(true);
-  }, [ref]);
+  }, [ref, isSelected]);
 
-  // const checkZIndex = (latest) => {
-  //   console.log(latest);
-  //   if (isSelected) {
-  //     zIndex.set(10);
-  //   } else if (!isSelected && latest.opacity !== 1.01) {
-  //     zIndex.set(0);
-  //   }
-  // };
+  const handleOpen = () => {
+    scrollLock();
+    history.push(`/${id}`);
+  };
 
-  // const handleOpen = () => {
-  //   // history.push(`/${id}`);
-  //
-  //   document.body.style.position = 'fixed';
-  //   document.body.style.top = `-${scrollY}px`;
-  // };
-  //
-  // const handleClose = () => {
-  //   const scrollY = parseInt(document.body.style.top, 10);
-  //
-  //   ref.current.scrollTo({
-  //     top: 0,
-  //     behavior: 'smooth',
-  //   });
-  //   // history.replace('/');
-  //
-  //   document.body.style.position = '';
-  //   document.body.style.top = '';
-  //   window.scrollTo(0, -(scrollY || 0));
-  // };
+  const handleClose = () => {
+    scrollUnlock();
+    history.replace('/');
+  };
 
   return (
     <Wrapper
@@ -176,7 +172,7 @@ const ProjectCard = ({
       >
         <Overlay
           isSelected={isSelected}
-          onClick={() => setIsSelected(false)}
+          onClick={() => handleClose()}
         />
         <ContentScrollContainer
           isSelected={isSelected}
@@ -184,7 +180,7 @@ const ProjectCard = ({
           transition={animation}
         >
           <ContentContainer
-            onClick={isSelected ? null : () => setIsSelected(true)}
+            onClick={isSelected ? null : () => handleOpen()}
             isSelected={isSelected}
             layout
             transition={animation}
@@ -192,7 +188,7 @@ const ProjectCard = ({
           >
             <CloseButtonWrapper
               isSelected={isSelected}
-              onClick={() => setIsSelected(false)}
+              onClick={() => handleClose()}
             >
               <MenuToggle isOpen />
             </CloseButtonWrapper>
@@ -234,15 +230,15 @@ ProjectCard.propTypes = {
   images: PropTypes.objectOf(PropTypes.string).isRequired,
   technologies: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,
   background: PropTypes.string,
-  // id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   title: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
   links: PropTypes.objectOf(PropTypes.string).isRequired,
-  // isSelected: PropTypes.bool,
+  isSelected: PropTypes.bool,
 };
 
 ProjectCard.defaultProps = {
-  // isSelected: false,
+  isSelected: false,
   background: '#fff',
 };
 

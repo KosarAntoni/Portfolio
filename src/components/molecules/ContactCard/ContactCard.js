@@ -63,7 +63,7 @@ const StyledLink = styled(Link)`
 `;
 
 const ContactCard = () => (
-  <Wrapper>
+  <Wrapper id="contact">
     <StyledHeading>Contact:</StyledHeading>
     <StyledLink big href="mailto:kosarantoni@gmail.com">
       kosarantoni@gmail.com

@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { useRouteMatch } from 'react-router-dom';
 import ProjectCard from '../organisms/ProjectCard';
 import SkillsCard from '../molecules/SkillsCard/SkillsCard';
 import AuthorCard from '../molecules/AuthorCard/AuthorCard';
@@ -92,35 +93,42 @@ const ItemWrapper = styled.div`
   };
 `;
 
-const GridTemplate = ({ projects, skills }) => (
-  <Wrapper>
-    <Grid>
-      <ItemWrapper>
-        <SkillsCard skills={skills} />
-      </ItemWrapper>
-      {projects.map((i) => (
-        <ItemWrapper
-          key={i.id}
-        >
-          <ProjectCard
-            content={i.content}
-            technologies={i.technologies}
-            title={i.title}
-            images={i.images}
-            links={i.links}
-            background={i.background}
-          />
+const GridTemplate = ({ projects, skills }) => {
+  const match = useRouteMatch('/:id');
+
+  return (
+    <Wrapper>
+      <Grid>
+        <ItemWrapper>
+          <SkillsCard skills={skills} />
         </ItemWrapper>
-      ))}
-      <ItemWrapper>
-        <ContactCard />
-      </ItemWrapper>
-      <ItemWrapper>
-        <AuthorCard />
-      </ItemWrapper>
-    </Grid>
-  </Wrapper>
-);
+        {projects.map((item, index) => (
+          <ItemWrapper
+            key={item.id}
+            id={index === 0 && 'projects'}
+          >
+            <ProjectCard
+              id={item.id}
+              content={item.content}
+              technologies={item.technologies}
+              title={item.title}
+              images={item.images}
+              links={item.links}
+              background={item.background}
+              isSelected={match && match.params.id === item.id.toString()}
+            />
+          </ItemWrapper>
+        ))}
+        <ItemWrapper>
+          <ContactCard />
+        </ItemWrapper>
+        <ItemWrapper>
+          <AuthorCard />
+        </ItemWrapper>
+      </Grid>
+    </Wrapper>
+  );
+};
 
 GridTemplate.propTypes = {
   projects: PropTypes.arrayOf(
