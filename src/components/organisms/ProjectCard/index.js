@@ -1,4 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, {
+  useEffect, useRef, useState,
+} from 'react';
 import styled, { css } from 'styled-components';
 import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
@@ -108,6 +110,7 @@ const DevicesMockupWrapper = styled(motion.div)`
   margin: 6rem auto 3rem;
   width: 30rem;
   height: 30rem;
+  z-index: 5;
   
   @media screen and (min-width: ${({ theme }) => theme.viewPorts.viewport4}px) {
     width: 40rem;
@@ -128,8 +131,8 @@ const ProjectCard = ({
   background,
   isSelected,
 }) => {
-  const [isWide, setIsWide] = useState(false);
-  const ref = useRef();
+  const [isWide, setIsWide] = useState(null);
+  const ref = useRef(null);
   const history = useHistory();
 
   const scrollLock = () => {
@@ -149,6 +152,7 @@ const ProjectCard = ({
   useEffect(() => {
     if (isSelected) scrollLock();
     if (ref.current.clientWidth > 400) setIsWide(true);
+    if (ref.current.clientWidth <= 400) setIsWide(false);
   }, [ref, isSelected]);
 
   const handleOpen = () => {
@@ -195,12 +199,13 @@ const ProjectCard = ({
               title={title}
               technologies={technologies}
             />
-
+            {ref.current
+            && (
             <DevicesMockupWrapper
               layout
               transition={animation}
               isSelected={isSelected}
-              initial={isWide ? { x: 100, y: -60 } : { x: 0, y: 0 }}
+              initial={false}
               animate={!isWide || isSelected
                 ? { x: 0, y: 0, scale: 1 } : { x: 100, y: -60, scale: 0.9 }}
             >
@@ -211,6 +216,7 @@ const ProjectCard = ({
                 isOpen={isWide || isSelected}
               />
             </DevicesMockupWrapper>
+            )}
 
             <Content
               isOpen={isSelected}
