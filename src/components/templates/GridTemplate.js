@@ -23,6 +23,7 @@ const Wrapper = styled.div`
 const Grid = styled.div`
   max-width: 1170px;
   width: 100%;
+  overflow: hidden;
 
   display: grid;
   grid-template-columns: 1fr;

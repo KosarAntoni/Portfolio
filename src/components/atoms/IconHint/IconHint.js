@@ -16,6 +16,7 @@ const IconHint = styled.div`
     font-size: ${({ theme }) => theme.fontSize.xs};
     content: '${({ children }) => children}';
     text-align: center;
+    left: -1.5rem;
 
     background: ${({ theme }) => theme.background};
     color: ${({ theme }) => theme.secondary};
@@ -26,7 +27,7 @@ const IconHint = styled.div`
     transition: all 0.3s;
   }
 
-  :before {
+  ::before {
     content: '';
     display: block;
     width: 100%;

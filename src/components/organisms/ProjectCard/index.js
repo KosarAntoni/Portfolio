@@ -50,7 +50,7 @@ const ContentScrollContainer = styled(motion.div)`
   transition: z-index 0.1s 0.8s;
   z-index: 1;
   width: 100%;
-  overflow: hidden;
+  //overflow: hidden;
   //cursor: zoom-out;
 
   -ms-overflow-style: none;  /* IE and Edge */

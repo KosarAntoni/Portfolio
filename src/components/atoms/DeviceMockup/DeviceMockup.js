@@ -13,6 +13,7 @@ const DeviceMockup = styled.div`
     display: block;
     content: '';
     position: absolute;
+    background-color: black;
     background-image: url('${({ img }) => img}');
     background-repeat: no-repeat;
     background-size: 100%;
