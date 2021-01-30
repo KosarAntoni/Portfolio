@@ -24,6 +24,10 @@ const TechnologiesContainer = styled.div`
   display: flex;
 `;
 
+const StyledIconHint = styled(IconHint)`
+  margin-right: 0.5rem;
+`;
+
 const CardHeading = ({
   title, technologies,
 }) => (
@@ -34,12 +38,12 @@ const CardHeading = ({
     <StyledHeading big>{title}</StyledHeading>
     <TechnologiesContainer>
       {technologies.map((i) => (
-        <IconHint
+        <StyledIconHint
           icon={i.icon}
           key={i.name}
         >
           {i.name}
-        </IconHint>
+        </StyledIconHint>
       ))}
     </TechnologiesContainer>
   </HeadingWrapper>
