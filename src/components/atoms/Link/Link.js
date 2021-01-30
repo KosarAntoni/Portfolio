@@ -8,10 +8,25 @@ const Link = styled.a`
   color: ${({ theme }) => theme.secondary};
   text-decoration: none;
   font-weight: ${({ theme }) => theme.fontWeight.bold};
+  overflow: hidden;
+  
+  ::after {
+    position: absolute;
+    content: '';
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    border-radius: 1rem;
+    background-color: ${({ theme }) => theme.secondary};
+    transform: translateX(-100%);
+    transition: transform 0.3s;
+  }
 
   :hover,
   :focus{
-    color: ${({ theme }) => theme.grey};
+    ::after {
+      transform: translateX(0%);
+    }
   }
 
   ${({ big }) => big && css`

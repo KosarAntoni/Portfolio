@@ -95,7 +95,6 @@ const WideScreenNavContainer = styled(motion.nav)`
 const StyledLink = styled(Link)`
   margin-bottom: 1.5rem;
   margin-right: auto;
-  color: ${({ theme }) => theme.black};
 `;
 
 const StyledWideScreenLink = styled(Link)`
@@ -106,7 +105,6 @@ const StyledPhoneLink = styled(Link)`
   margin-top: 1.5rem;
   margin-right: auto;
   font-weight: ${({ theme }) => theme.fontWeight.regular};
-  color: ${({ theme }) => theme.black};
 `;
 
 const SocialLinksContainer = styled.div`

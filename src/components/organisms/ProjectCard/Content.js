@@ -4,7 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import animation from './animation';
 import Paragraph from '../../atoms/Paragraph/Paragraph';
-import Link from '../../atoms/Link/Link';
+import CardLink from '../../atoms/CardLink/CardLink';
 
 const Wrapper = styled(motion.div)`
   display: flex;
@@ -24,19 +24,6 @@ const LinksContainer = styled.div`
   align-self: flex-start;
 `;
 
-const StyledLink = styled(Link)`
-  font-size: ${({ theme }) => theme.fontSize.s};
-  font-weight: ${({ theme }) => theme.fontWeight.bold};
-  padding: 0.5rem 2rem;
-  color: ${({ theme }) => theme.primary};
-
-  :hover,
-  :focus {
-    color: ${({ theme }) => theme.secondary};
-  }
-}
-`;
-
 const Content = ({
   content,
   links,
@@ -47,8 +34,8 @@ const Content = ({
   >
     <Paragraph>{content}</Paragraph>
     <LinksContainer>
-      <StyledLink big href={links.live}>Live</StyledLink>
-      <StyledLink href={links.code}>Code</StyledLink>
+      <CardLink button href={links.live}>Live</CardLink>
+      <CardLink href={links.code}>Code</CardLink>
     </LinksContainer>
   </Wrapper>
 );

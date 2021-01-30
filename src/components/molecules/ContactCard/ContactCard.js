@@ -59,6 +59,7 @@ const StyledHeading = styled(Heading)`
 const StyledLink = styled(Link)`
   font-family: 'Teko', sans-serif;
   margin-top: 0.5rem;
+  margin-right: auto;
 `;
 
 const ContactCard = () => (
