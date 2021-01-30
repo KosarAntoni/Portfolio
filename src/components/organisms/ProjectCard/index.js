@@ -23,9 +23,8 @@ const Overlay = styled(motion.div)`
   left: 0;
   bottom: 0;
   width: 100vw;
-  cursor: zoom-out;
   visibility: ${({ isSelected }) => (isSelected ? 'visible' : 'hidden')};
-  background: rgba(0, 0, 0, 0.4);
+  cursor: zoom-out;
 `;
 
 const ContentWrapper = styled.div`
@@ -50,7 +49,8 @@ const ContentScrollContainer = styled(motion.div)`
   position: relative;
   transition: z-index 0.1s 0.8s;
   z-index: 1;
-  height: fit-content;
+  width: 100%;
+  //cursor: zoom-out;
 
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;
@@ -59,7 +59,6 @@ const ContentScrollContainer = styled(motion.div)`
   }
 
   ${({ isSelected }) => isSelected && css`
-    height: auto;
     overflow: auto;
     z-index: 10;
     padding: 8rem 1.5rem 1.5rem;
@@ -100,7 +99,6 @@ const CloseButtonWrapper = styled.div`
   path {
     stroke: ${({ theme }) => theme.primary}
   }
-  
 `;
 
 const DevicesMockupWrapper = styled(motion.div)`
@@ -173,15 +171,15 @@ const ProjectCard = ({
         transition={animation}
         isSelected={isSelected}
       >
-        <Overlay
-          isSelected={isSelected}
-          onClick={() => handleClose()}
-        />
         <ContentScrollContainer
           isSelected={isSelected}
           layout
           transition={animation}
         >
+          <Overlay
+            isSelected={isSelected}
+            onClick={() => handleClose()}
+          />
           <ContentContainer
             onClick={isSelected ? null : () => handleOpen()}
             isSelected={isSelected}

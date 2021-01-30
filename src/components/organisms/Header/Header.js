@@ -241,17 +241,17 @@ const Header = () => {
           </StyledPhoneLink>
           <SocialLinksContainer>
             <SocialLink
-              href="https://instagram.com/"
+              href="https://github.com/KosarAntoni"
               target="_blank"
               icon={githubIcon}
             />
             <SocialLink
-              href="https://www.fb.com/"
+              href="https://www.facebook.com/anton.kosar.12/"
               target="_blank"
               icon={facebookIcon}
             />
             <SocialLink
-              href="https://www.vk.com/"
+              href="https://www.linkedin.com/in/anton-kosar-51a33617a"
               target="_blank"
               icon={linkedinIcon}
             />

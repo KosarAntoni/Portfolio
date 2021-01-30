@@ -34,8 +34,19 @@ const Content = ({
   >
     <Paragraph>{content}</Paragraph>
     <LinksContainer>
-      <CardLink button href={links.live}>Live</CardLink>
-      <CardLink href={links.code}>Code</CardLink>
+      <CardLink
+        button
+        href={links.live}
+        target="_blank"
+      >
+        Live
+      </CardLink>
+      <CardLink
+        href={links.code}
+        target="_blank"
+      >
+        Code
+      </CardLink>
     </LinksContainer>
   </Wrapper>
 );
