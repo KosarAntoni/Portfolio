@@ -152,7 +152,6 @@ const ProjectCard = ({
   }, [ref, isSelected]);
 
   const handleOpen = () => {
-    scrollLock();
     history.push(`/${id}`);
   };
 
