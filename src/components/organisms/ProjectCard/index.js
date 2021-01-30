@@ -50,6 +50,7 @@ const ContentScrollContainer = styled(motion.div)`
   transition: z-index 0.1s 0.8s;
   z-index: 1;
   width: 100%;
+  overflow: hidden;
   //cursor: zoom-out;
 
   -ms-overflow-style: none;  /* IE and Edge */
@@ -74,7 +75,7 @@ const ContentContainer = styled(motion.div)`
   width: 100%;
   max-width: 74rem;
   height: 34rem;
-  cursor: pointer;
+  cursor: zoom-in;
   border-radius: 2rem;
   box-shadow: 0 4px 0.75rem rgba(0, 0, 0, .2);
   background: ${({ background }) => background};
