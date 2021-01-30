@@ -50,7 +50,29 @@ export const projects = [
     ],
     title: 'FavNote',
     content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquam\n'
-            + 'atque doloribus eos facilis laudantium libero natus odit quas voluptate?',
+            + 'atque doloribus eos facilis laudantium libero natus odit quas voluptate?'
+    + 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquam\n'
+    + 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquam\n'
+    + 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquam\n'
+    + 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquam\n'
+    + 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquam\n'
+    + 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquam\n'
+    + 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquam\n'
+    + 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquam\n'
+    + 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquam\n'
+    + 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquam\n'
+    + 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquam\n'
+    + 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquam\n'
+    + 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquam\n'
+    + 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquam\n'
+    + 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquam\n'
+    + 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquam\n'
+    + 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquam\n'
+    + 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquam\n'
+    + 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquam\n'
+    + 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquam\n'
+    + 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquam\n'
+    + 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquam\n',
     links: {
       live: 'https://www.google.pl/',
       code: 'https://www.google.pl/',

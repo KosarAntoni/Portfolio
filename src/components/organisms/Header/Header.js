@@ -64,7 +64,7 @@ const Background = styled(motion.div)`
   width: 1rem;
   height: 1rem;
   border-radius: 100%;
-  background-color: #a6c1ee;
+  background-color: ${({ theme }) => theme.background};
   
   @media screen and (min-width: ${({ theme }) => theme.viewPorts.viewport9}px) {
     top: -3rem;

@@ -32,9 +32,8 @@ const ContentWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-content: center;
-  background: rgba(0, 0, 0, 0);
   z-index: 1;
-  
+
   ${({ isSelected }) => isSelected && css`
     position: fixed;
     top: 0;
@@ -42,11 +41,26 @@ const ContentWrapper = styled.div`
     right: 0;
     height: 100vh;
     z-index: 10;
-    padding: 1.5rem;
-    
-    @media screen and (min-width: ${({ theme }) => theme.viewPorts.viewport7}px) {
-      padding: 4.5rem;
-    }
+  `}
+`;
+
+const ContentScrollContainer = styled(motion.div)`
+  position: relative;
+  transition: z-index 0.1s 0.8s;
+  z-index: 1;
+  height: fit-content;
+
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  ${({ isSelected }) => isSelected && css`
+    height: auto;
+    overflow: auto;
+    z-index: 10;
+    padding: 8rem 1.5rem 1.5rem;
   `}
 `;
 
@@ -58,21 +72,17 @@ const ContentContainer = styled(motion.div)`
   position: relative;
   width: 100%;
   max-width: 74rem;
+  height: 34rem;
   cursor: pointer;
-  overflow: hidden;
   border-radius: 2rem;
   box-shadow: 0 4px 0.75rem rgba(0, 0, 0, .2);
-  z-index: 1;
-  transition: z-index 0.1s 0.8s;
   background: ${({ background }) => background};
-
+  overflow: hidden;
+  
   ${({ isSelected }) => isSelected && css`
     cursor: initial;
     height: auto;
     margin: auto;
-
-    z-index: 10;
-
   `}
 `;
 
@@ -135,14 +145,12 @@ const ProjectCard = ({
   // };
 
   // const handleOpen = () => {
-  //   const { scrollY } = window;
-  //
-  //   history.push(`/${id}`);
+  //   // history.push(`/${id}`);
   //
   //   document.body.style.position = 'fixed';
   //   document.body.style.top = `-${scrollY}px`;
   // };
-
+  //
   // const handleClose = () => {
   //   const scrollY = parseInt(document.body.style.top, 10);
   //
@@ -150,7 +158,7 @@ const ProjectCard = ({
   //     top: 0,
   //     behavior: 'smooth',
   //   });
-  //   history.replace('/');
+  //   // history.replace('/');
   //
   //   document.body.style.position = '';
   //   document.body.style.top = '';
@@ -170,47 +178,53 @@ const ProjectCard = ({
           isSelected={isSelected}
           onClick={() => setIsSelected(false)}
         />
-        <ContentContainer
-          onClick={isSelected ? null : () => setIsSelected(true)}
+        <ContentScrollContainer
           isSelected={isSelected}
           layout
           transition={animation}
-          background={background}
         >
-          <CloseButtonWrapper
+          <ContentContainer
+            onClick={isSelected ? null : () => setIsSelected(true)}
             isSelected={isSelected}
-            onClick={() => setIsSelected(false)}
-          >
-            <MenuToggle isOpen />
-          </CloseButtonWrapper>
-          <CardHeading
-            title={title}
-            technologies={technologies}
-          />
-
-          <DevicesMockupWrapper
             layout
             transition={animation}
-            isSelected={isSelected}
-            initial={isWide ? { x: 100, y: -60 } : { x: 0, y: 0 }}
-            animate={!isWide || isSelected
-              ? { x: 0, y: 0, scale: 1 } : { x: 100, y: -60, scale: 0.9 }}
+            background={background}
           >
-            <DevicesMockup
-              desktop={images.desktop}
-              tablet={images.tablet}
-              mobile={images.mobile}
-              isOpen={isWide || isSelected}
+            <CloseButtonWrapper
+              isSelected={isSelected}
+              onClick={() => setIsSelected(false)}
+            >
+              <MenuToggle isOpen />
+            </CloseButtonWrapper>
+            <CardHeading
+              title={title}
+              technologies={technologies}
             />
-          </DevicesMockupWrapper>
 
-          <Content
-            isOpen={isSelected}
-            content={content}
-            links={links}
-            images={images}
-          />
-        </ContentContainer>
+            <DevicesMockupWrapper
+              layout
+              transition={animation}
+              isSelected={isSelected}
+              initial={isWide ? { x: 100, y: -60 } : { x: 0, y: 0 }}
+              animate={!isWide || isSelected
+                ? { x: 0, y: 0, scale: 1 } : { x: 100, y: -60, scale: 0.9 }}
+            >
+              <DevicesMockup
+                desktop={images.desktop}
+                tablet={images.tablet}
+                mobile={images.mobile}
+                isOpen={isWide || isSelected}
+              />
+            </DevicesMockupWrapper>
+
+            <Content
+              isOpen={isSelected}
+              content={content}
+              links={links}
+              images={images}
+            />
+          </ContentContainer>
+        </ContentScrollContainer>
       </ContentWrapper>
     </Wrapper>
   );

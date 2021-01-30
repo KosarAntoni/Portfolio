@@ -14,6 +14,7 @@ const Wrapper = styled.div`
   box-shadow: 0 4px 0.75rem rgba(0, 0, 0, .2);
   width: 100%;
   height: 100%;
+  min-height: 34rem;
 
   ::after {
     top: 1rem;

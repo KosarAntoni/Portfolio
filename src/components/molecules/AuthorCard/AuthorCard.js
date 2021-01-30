@@ -15,7 +15,8 @@ const Wrapper = styled.div`
   background-color: ${({ theme }) => theme.background};
   width: 100%;
   height: 100%;
-  
+  min-height: 34rem;
+
   user-select: none;
 
   ::after {
