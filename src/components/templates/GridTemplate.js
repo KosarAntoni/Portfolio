@@ -14,7 +14,8 @@ const Wrapper = styled.div`
   width: 100%;
   padding: 0 1.5rem;
   margin: 2rem 0;
-  
+  overflow: hidden;
+
   @media screen and (min-width: ${({ theme }) => theme.viewPorts.viewport7}px) {
     padding: 0 4.5rem;
   }
@@ -23,7 +24,6 @@ const Wrapper = styled.div`
 const Grid = styled.div`
   max-width: 1170px;
   width: 100%;
-  overflow: hidden;
 
   display: grid;
   grid-template-columns: 1fr;
