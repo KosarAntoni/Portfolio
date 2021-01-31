@@ -83,13 +83,10 @@ const ContentContainer = styled(motion.div)`
   `}
 `;
 
-const CloseButtonWrapper = styled.div`
+const CloseButtonWrapper = styled(motion.div)`
   position: absolute;
   top: 2rem;
   right: 2rem;
-  
-  transform: translateY(${({ isSelected }) => (isSelected ? '0%' : '-200%')});
-  transition: all 0.3s;
   z-index: 3;
 
   path {
@@ -178,7 +175,9 @@ const ProjectCard = ({
             background={background}
           >
             <CloseButtonWrapper
-              isSelected={isSelected}
+              initial={false}
+              animate={{ opacity: isSelected ? 1 : 0 }}
+              transition={animation}
               onClick={() => handleClose()}
             >
               <MenuToggle isOpen />

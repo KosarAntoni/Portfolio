@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 import DeviceMockup from '../../atoms/DeviceMockup/DeviceMockup';
 
 const Wrapper = styled.div`
@@ -23,7 +24,6 @@ const BackgroundWrapper = styled.div`
 `;
 
 const FrontDeviceContainer = styled.div`
-  position: relative;
   z-index: 10;
 `;
 
@@ -32,19 +32,10 @@ const BackgroundDeviceContainer = styled.div`
   justify-content: ${({ right }) => (right ? 'flex-end' : 'flex-start')};
   width: 50%;
   overflow: hidden;
-  z-index: 5;
+  z-index: -1;
 `;
 
-const DeviceMockupWrapperLeft = styled.div`
-  transform: translateX(${({ isOpen }) => (isOpen ? '0%' : '100%')});
-  transition: all 0.3s ease-out;
-  z-index: 4;
-`;
-
-const DeviceMockupWrapperRight = styled.div`
-  transform: translateX(${({ isOpen }) => (isOpen ? '0%' : '-100%')});
-  transition: all 0.3s ease-out;
-  z-index: 4;
+const DeviceMockupWrapper = styled(motion.div)`
 `;
 
 const DevicesMockup = ({
@@ -56,18 +47,22 @@ const DevicesMockup = ({
     </FrontDeviceContainer>
     <BackgroundWrapper>
       <BackgroundDeviceContainer>
-        <DeviceMockupWrapperLeft
-          isOpen={isOpen}
+        <DeviceMockupWrapper
+          initial={false}
+          animate={{ x: isOpen ? '0' : '100%' }}
+          transition={{ type: 'spring', duration: 0.8, bounce: 0 }}
         >
           <DeviceMockup desktop img={desktop} />
-        </DeviceMockupWrapperLeft>
+        </DeviceMockupWrapper>
       </BackgroundDeviceContainer>
       <BackgroundDeviceContainer right>
-        <DeviceMockupWrapperRight
-          isOpen={isOpen}
+        <DeviceMockupWrapper
+          initial={false}
+          animate={{ x: isOpen ? '0' : '-100%' }}
+          transition={{ type: 'spring', duration: 0.8, bounce: 0 }}
         >
           <DeviceMockup tablet img={tablet} />
-        </DeviceMockupWrapperRight>
+        </DeviceMockupWrapper>
       </BackgroundDeviceContainer>
     </BackgroundWrapper>
 
