@@ -1,8 +1,8 @@
 import React from 'react';
 import ProjectCard from './index';
-import laptopScreenshot from '../../../assets/Zrzut ekranu 2021-01-25 o 17.04.50.png';
-import tabletScreenshot from '../../../assets/iPad.png';
-import mobileScreenshot from '../../../assets/iPhone.png';
+import laptopScreenshot from '../../../assets/pictures/hotelCatsDesktop.png';
+import tabletScreenshot from '../../../assets/pictures/hotelCatsTablet.png';
+import mobileScreenshot from '../../../assets/pictures/hotelCatsMobile.png';
 import reactIcon from '../../../assets/icons/react-brands.svg';
 import atomicIcon from '../../../assets/icons/atomics-design.svg';
 

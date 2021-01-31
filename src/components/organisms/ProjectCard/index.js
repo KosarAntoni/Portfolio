@@ -1,6 +1,4 @@
-import React, {
-  useEffect, useRef, useState,
-} from 'react';
+import React, { useEffect } from 'react';
 import styled, { css } from 'styled-components';
 import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
@@ -22,7 +20,7 @@ const Overlay = styled(motion.div)`
   top: 0;
   left: 0;
   bottom: 0;
-  width: 100vw;
+  width: 100%;
   visibility: ${({ isSelected }) => (isSelected ? 'visible' : 'hidden')};
   cursor: zoom-out;
 `;
@@ -33,25 +31,23 @@ const ContentWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-content: center;
+  transition: z-index 0.1s 0.8s;
   z-index: 1;
+  position: relative;
 
   ${({ isSelected }) => isSelected && css`
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    height: 100vh;
     z-index: 10;
+    transition: z-index 0.1s 0s;
   `}
 `;
 
 const ContentScrollContainer = styled(motion.div)`
   position: relative;
-  transition: z-index 0.1s 0.8s;
-  z-index: 1;
   width: 100%;
-  //overflow: hidden;
-  //cursor: zoom-out;
 
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;
@@ -61,7 +57,6 @@ const ContentScrollContainer = styled(motion.div)`
 
   ${({ isSelected }) => isSelected && css`
     overflow: auto;
-    z-index: 10;
     padding: 8rem 1.5rem 1.5rem;
   `}
 `;
@@ -130,8 +125,6 @@ const ProjectCard = ({
   background,
   isSelected,
 }) => {
-  const [isWide, setIsWide] = useState(null);
-  const ref = useRef(null);
   const history = useHistory();
 
   const scrollLock = () => {
@@ -150,9 +143,7 @@ const ProjectCard = ({
 
   useEffect(() => {
     if (isSelected) scrollLock();
-    if (ref.current.clientWidth > 400) setIsWide(true);
-    if (ref.current.clientWidth <= 400) setIsWide(false);
-  }, [ref, isSelected]);
+  }, [isSelected]);
 
   const handleOpen = () => {
     history.push(`/${id}`);
@@ -164,9 +155,7 @@ const ProjectCard = ({
   };
 
   return (
-    <Wrapper
-      ref={ref}
-    >
+    <Wrapper>
       <ContentWrapper
         layout
         transition={animation}
@@ -198,25 +187,21 @@ const ProjectCard = ({
               title={title}
               technologies={technologies}
             />
-            {ref.current
-            && (
             <DevicesMockupWrapper
               layout
               transition={animation}
               isSelected={isSelected}
               initial={false}
-              animate={!isWide || isSelected
-                ? { x: 0, y: 0, scale: 1 } : { x: 100, y: -60, scale: 0.9 }}
+              animate={isSelected
+                ? { x: 0, y: 0, scale: 1 } : { x: 0, y: -20, scale: 0.8 }}
             >
               <DevicesMockup
                 desktop={images.desktop}
                 tablet={images.tablet}
                 mobile={images.mobile}
-                isOpen={isWide || isSelected}
+                isOpen={isSelected}
               />
             </DevicesMockupWrapper>
-            )}
-
             <Content
               isOpen={isSelected}
               content={content}

@@ -24,8 +24,7 @@ const BackgroundWrapper = styled.div`
 
 const FrontDeviceContainer = styled.div`
   position: relative;
-  z-index: 5;
-  filter: drop-shadow(16px 16px 20px rgba(0,0,0,0.5));
+  z-index: 10;
 `;
 
 const BackgroundDeviceContainer = styled.div`
@@ -33,17 +32,19 @@ const BackgroundDeviceContainer = styled.div`
   justify-content: ${({ right }) => (right ? 'flex-end' : 'flex-start')};
   width: 50%;
   overflow: hidden;
-  filter: drop-shadow(16px 16px 20px rgba(0,0,0,0.5));
+  z-index: 5;
 `;
 
 const DeviceMockupWrapperLeft = styled.div`
   transform: translateX(${({ isOpen }) => (isOpen ? '0%' : '100%')});
   transition: all 0.3s ease-out;
+  z-index: 4;
 `;
 
 const DeviceMockupWrapperRight = styled.div`
   transform: translateX(${({ isOpen }) => (isOpen ? '0%' : '-100%')});
   transition: all 0.3s ease-out;
+  z-index: 4;
 `;
 
 const DevicesMockup = ({

@@ -24,6 +24,7 @@ const GlobalStyle = createGlobalStyle`
     color: ${({ theme }) => theme.primary};
     padding-top: 7rem;
     width: 100%;
+    overflow-x: hidden;
   }
 `;
 
