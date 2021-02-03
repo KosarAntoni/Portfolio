@@ -25,6 +25,12 @@ const GlobalStyle = createGlobalStyle`
     padding-top: 7rem;
     width: 100%;
     overflow-x: hidden;
+
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;
+    ::-webkit-scrollbar {
+      display: none;
+    }
   }
 `;
 
