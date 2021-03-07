@@ -54,9 +54,7 @@ const AuthorCard = () => (
   <Wrapper>
     <StyledParagraph>💻 Coded by</StyledParagraph>
     <StyledHeading>Anton Kosar</StyledHeading>
-    <StyledParagraph crossed>In Brześć️ 🏹</StyledParagraph>
-    <StyledParagraph crossed>In Wrocław️ 🦁</StyledParagraph>
-    <StyledParagraph>In Gdańsk ⚓️</StyledParagraph>
+    <StyledParagraph>In Gdańsk</StyledParagraph>
     <StyledParagraph>With ❤️</StyledParagraph>
   </Wrapper>
 );

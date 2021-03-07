@@ -4,11 +4,11 @@ import cssIcon from '../assets/icons/css3-alt-brands.svg';
 import framerIcon from '../assets/icons/framer.svg';
 import jsIcon from '../assets/icons/js-square-brands.svg';
 import styledIcon from '../assets/icons/nail-polish-svgrepo-com.svg';
-import reactRouterIcon from '../assets/icons/react-router.svg';
 import reduxIcon from '../assets/icons/redux.svg';
 import htmlIcon from '../assets/icons/html5-brands.svg';
 import formikIcon from '../assets/icons/formikIcon.svg';
 import moonIcon from '../assets/icons/moon-solid.svg';
+import strapiIcon from '../assets/icons/strapi-2.svg';
 
 import favnoteDesktop from '../assets/pictures/favnoteDesktop.png';
 import favnoteTablet from '../assets/pictures/favnoteTablet.png';
@@ -42,10 +42,6 @@ export const projects = [
       {
         icon: reactIcon,
         name: 'React',
-      },
-      {
-        icon: reactRouterIcon,
-        name: 'React Router',
       },
       {
         icon: styledIcon,
@@ -94,10 +90,6 @@ export const projects = [
         name: 'React',
       },
       {
-        icon: reactRouterIcon,
-        name: 'React Router',
-      },
-      {
         icon: reduxIcon,
         name: 'Redux',
       },
@@ -116,6 +108,10 @@ export const projects = [
       {
         icon: atomicIcon,
         name: 'Atomic Design',
+      },
+      {
+        icon: strapiIcon,
+        name: 'Strapi as backend',
       },
     ],
     title: 'FavNote',
@@ -143,10 +139,6 @@ export const projects = [
       {
         icon: reactIcon,
         name: 'React',
-      },
-      {
-        icon: reactRouterIcon,
-        name: 'React Router',
       },
       {
         icon: styledIcon,
@@ -217,10 +209,6 @@ export const projects = [
         name: 'React',
       },
       {
-        icon: reactRouterIcon,
-        name: 'React Router',
-      },
-      {
         icon: reactIcon,
         name: 'React Transition Group',
       },
@@ -254,6 +242,7 @@ export const skills = [
   'Redux',
   'Framer Motion',
   'Git',
+  'REST API',
   'CSS Modules',
   'Styled Components',
   'Storybook',
